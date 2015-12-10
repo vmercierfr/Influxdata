@@ -1,0 +1,7 @@
+stream
+    .from().measurement('cpu_usage_idle')
+        .where(lambda: "cpu" == 'cpu-total')
+    .alert()
+                .warn(lambda: "value" < 30)
+                .crit(lambda: "value" < 10)
+        .log('/tmp/high_cpu.log')
